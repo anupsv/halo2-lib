@@ -51,7 +51,7 @@ impl<'chip, F: PrimeField> ZcBlsSignatureChip<'chip, F> {
             .map(|pt| g1_chip.load_private::<G1Affine>(ctx, (pt.x, pt.y)))
             .collect::<Vec<_>>();
 
-        let signature_agg_assigned = g1_chip.sum::<G2Affine>(ctx, signature_points);
+        let signature_agg_assigned = g1_chip.sum::<G1Affine>(ctx, signature_points);
 
         let pubkey_points = pubkeys
             .iter()
